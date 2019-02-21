@@ -1,0 +1,17 @@
+S
+2
+KK S 1
+LL W 2
+M N 1
+DDD N 3
+NNNN S 2
+CCC W 3
+E S 1
+JJJ N 1
+AAA S 3
+FF S 2 
+HH S 2
+GGG W 3
+HH N 3
+III N 8
+BBB W 4
