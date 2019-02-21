@@ -1,2 +1,2 @@
 # Fork-Traffic-Light-Simulation
-This is a C++ program that utilizes fork() to simulate a traffic light. It reads from a file the initial direction, max number of cars, and cars information and simulates the traffic light based on these information.
+This is a C++ program that utilizes fork() to simulate a traffic light. It reads from a file the initial direction, max number of cars, and cars information and simulates the traffic light based on these information. To compile and run this program, you'll need to use an Ubuntu terminal and use the following commands: "g++ -std=c++11 main.cpp" (to compile) and "./a.out < input1.txt" (to run).
