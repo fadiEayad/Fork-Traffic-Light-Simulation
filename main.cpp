@@ -12,14 +12,13 @@ using namespace std;
 int counter = 0;
 
 struct cars {
-	string plate;
-	string direction;
-	int time;
+	string plate;	//license plate of car
+	string direction;	//direction where car is going
+	int time;	//time for car to pass intersection
 	cars(string x) {
-		string t;
 		stringstream ss(x);
-		ss >> plate >> direction >> time;
-		ss.str("");
+		ss >> plate >> direction >> time;	//storing info into "plate", "direction", and "time"
+		ss.str("");	//clear ss
 	}
 };
 
@@ -33,12 +32,12 @@ void printCars(list<cars> &car, int max) {	//function to print to screen
 			pid = fork();	//creating child process
 			if (pid == 0) {	//if child
 				cout << "Car " << car.front().plate << " is using the intersection for " << car.front().time << " sec(s)." << endl;
-				sleep(car.front().time);
-				exit(0);
+				sleep(car.front().time);	//sleep until car passes intersection
+				exit(0);	//end child process
 			}
 			else {	//if parent
-				wait(0);
-				car.pop_front();
+				wait(0);	//wait for child process(es)
+				car.pop_front();	//remove car from list
 			}
 			counter--;	//decrementing car counter by 1
 		}
@@ -47,39 +46,39 @@ void printCars(list<cars> &car, int max) {	//function to print to screen
 
 
 int main() {
-	list<cars> Ncars;
-	list<cars> Ecars;
-	list<cars> Scars;
-	list<cars> Wcars;
+	list<cars> Ncars;	//creating list for Northbound cars
+	list<cars> Ecars;	//creating list for Eastbound cars
+	list<cars> Scars;	//creating list for Southbound cars
+	list<cars> Wcars;	//creating list for Westbound cars
 
 	string initialDir;
 	string mC;
 	int maxCars;
 	string p, d, t;
 
-	cin >> initialDir;
-	cin >> maxCars;
+	cin >> initialDir;	//storing initial direction
+	cin >> maxCars;	//storing max numbers of cars that can pass intersection from same direction before switching direction
 
 	string line;
-	while (getline(cin, line)) {
+	while (getline(cin, line)) {	//reding from file
 		stringstream ss(line);
-		ss >> p >> d >> t;
-		cars newCar(line);
-		if (d == "N") {
-			Ncars.push_back(newCar);
+		ss >> p >> d >> t;	//storing license plate, direction, and time into "p", "d", and "t", respectively
+		cars newCar(line);	//creating cars object
+		if (d == "N") {	//if car is going North
+			Ncars.push_back(newCar);	//store car into Northbound list
 		}
-		else if (d == "E") {
-			Ecars.push_back(newCar);
+		else if (d == "E") {	//if car is going East
+			Ecars.push_back(newCar);	//store car into Eastbound list
 		}
-		else if (d == "S") {
-			Scars.push_back(newCar);
+		else if (d == "S") {	//if car is going South
+			Scars.push_back(newCar);	//store car into Southbound list
 		}
-		else if (d == "W") {
-			Wcars.push_back(newCar);
+		else if (d == "W") {	//if car is going West
+			Wcars.push_back(newCar);	//store car into Westbound list
 		}
 
-		ss.str("");
-		counter++;
+		ss.str("");	//clear ss
+		counter++;	//increment counter of total cars
 	}
 
 	if (initialDir == "N") {		//start from North if that's the initial direction
